@@ -20,11 +20,11 @@ class _TransportBodyWidgetState extends State<TransportBodyWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: 20, left: 20, top: 10),
+      padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Vận chuyển',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
@@ -33,19 +33,19 @@ class _TransportBodyWidgetState extends State<TransportBodyWidget> {
               Expanded(
                   child: GestureDetector(
                 onTap: () {
-                  Get.to(DetailsOrderWidget(),
+                  Get.to(const DetailsOrderWidget(),
                       transition: Transition.rightToLeft);
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 15, bottom: 5),
-                      padding: EdgeInsets.all(13),
+                      margin: const EdgeInsets.only(top: 15, bottom: 5),
+                      padding: const EdgeInsets.all(13),
                       decoration: BoxDecoration(
                         border: Border.all(
                             width: 2,
-                            color: Color.fromARGB(255, 240, 237, 235)),
+                            color: const Color.fromARGB(255, 240, 237, 235)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -55,29 +55,29 @@ class _TransportBodyWidgetState extends State<TransportBodyWidget> {
                         ),
                       ),
                     ),
-                    Text("Giao hàng")
+                    const Text("Giao hàng")
                   ],
                 ),
               )),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
                   child: GestureDetector(
                 onTap: () {
-                  Get.to(ReceiveBodyWidget(),
+                  Get.to(const ReceiveBodyWidget(),
                       transition: Transition.rightToLeft);
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 15, bottom: 5),
-                      padding: EdgeInsets.all(13),
+                      margin: const EdgeInsets.only(top: 15, bottom: 5),
+                      padding: const EdgeInsets.all(13),
                       decoration: BoxDecoration(
                         border: Border.all(
                             width: 2,
-                            color: Color.fromARGB(255, 240, 237, 235)),
+                            color: const Color.fromARGB(255, 240, 237, 235)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -87,14 +87,14 @@ class _TransportBodyWidgetState extends State<TransportBodyWidget> {
                         ),
                       ),
                     ),
-                    Text("Nhận hàng")
+                    const Text("Nhận hàng")
                   ],
                 ),
               )),
-              Expanded(
+              const Expanded(
                 child: SizedBox(),
               ),
-              Expanded(child: SizedBox())
+              const Expanded(child: SizedBox())
             ],
           )
         ],
@@ -107,11 +107,11 @@ class _TransportBodyWidgetState extends State<TransportBodyWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 15, bottom: 5),
-          padding: EdgeInsets.all(13),
+          margin: const EdgeInsets.only(top: 15, bottom: 5),
+          padding: const EdgeInsets.all(13),
           decoration: BoxDecoration(
-            border:
-                Border.all(width: 2, color: Color.fromARGB(255, 240, 237, 235)),
+            border: Border.all(
+                width: 2, color: const Color.fromARGB(255, 240, 237, 235)),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Center(

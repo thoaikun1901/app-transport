@@ -12,12 +12,12 @@ class _ReceiveBodyWidgetState extends State<ReceiveBodyWidget> {
   TabBar get _tabBar => TabBar(
         indicatorColor: ColorsConstants.backgroundMain,
         labelColor: ColorsConstants.backgroundMain,
-        tabs: <Widget>[
+        tabs: const <Widget>[
           Tab(
             text: 'Chưa nhận',
           ),
           Tab(
-            text: 'Nhận bàn giao',
+            text: 'Bàn giao',
           ),
           Tab(
             text: 'Đã nhận',
@@ -27,13 +27,13 @@ class _ReceiveBodyWidgetState extends State<ReceiveBodyWidget> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        initialIndex: 1,
+        initialIndex: 0,
         length: 5,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: ColorsConstants.backgroundMain,
             centerTitle: true,
-            title: Text(
+            title: const Text(
               'Nhận hàng',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
@@ -46,7 +46,7 @@ class _ReceiveBodyWidgetState extends State<ReceiveBodyWidget> {
               ),
             ),
             leading: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
               ),
@@ -55,7 +55,7 @@ class _ReceiveBodyWidgetState extends State<ReceiveBodyWidget> {
               },
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: <Widget>[
               Text('Chưa nhận'),
               Text('Nhận bàn giao'),

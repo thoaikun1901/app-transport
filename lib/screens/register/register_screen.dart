@@ -4,44 +4,28 @@ import 'package:app_transport/shared/constant/color_constant.dart';
 import 'package:app_transport/shared/helper/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreenWidget extends StatefulWidget {
-  const LoginScreenWidget({super.key});
+class RegisterScreenWidget extends StatefulWidget {
+  const RegisterScreenWidget({super.key});
 
   @override
-  State<LoginScreenWidget> createState() => _LoginScreenWidgetState();
+  State<RegisterScreenWidget> createState() => _RegisterScreenWidgetState();
 }
 
-class _LoginScreenWidgetState extends State<LoginScreenWidget> {
+class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
   final NavigationController _navigationController =
       Get.put(NavigationController());
   final TextEditingController _phone = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
-  void loginUser() async {
+  void registerAuth() async {
     try {
-      var res = await UserServices.signIn(_phone.text, _password.text);
+      var res = await UserServices.signUp(_phone.text, _password.text);
       _navigationController.updateSelectIndex(0);
       Get.toNamed('');
     } catch (e) {
       logger.w(e);
     }
-  }
-
-  void checkAuth() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token') ?? "";
-    if (token != "") {
-      Get.toNamed('');
-    }
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    checkAuth();
   }
 
   @override
@@ -71,7 +55,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Text(
-                    'Đăng nhập',
+                    'Đăng ký',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
@@ -118,7 +102,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                     onPressed: () {
                       // _navigationController.updateSelectIndex(0);
                       // Get.toNamed("");
-                      loginUser();
+                      registerAuth();
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -128,7 +112,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                       // primary: Colors.white,
                     ),
                     child: const Text(
-                      'Login',
+                      'Register',
                       style: TextStyle(
                         color: Colors.indigo,
                         fontSize: 18.0,
@@ -139,20 +123,10 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                   const SizedBox(height: 20.0),
                   TextButton(
                     onPressed: () {
-                      Get.toNamed('/register');
+                      Get.toNamed('/login');
                     },
                     child: const Text(
-                      'Đăng ký tài khoản',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Quên mật khẩu?',
+                      'Đăng nhập',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16.0,

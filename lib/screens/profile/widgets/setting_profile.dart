@@ -1,6 +1,7 @@
 import 'package:app_transport/shared/helper/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingProfileWidget extends StatefulWidget {
   const SettingProfileWidget({super.key});
@@ -13,7 +14,7 @@ class _SettingProfileWidgetState extends State<SettingProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: 20, left: 20, top: 10),
+      padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,11 +25,12 @@ class _SettingProfileWidgetState extends State<SettingProfileWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 15, bottom: 5),
-                    padding: EdgeInsets.all(18),
+                    margin: const EdgeInsets.only(top: 15, bottom: 5),
+                    padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
                       border: Border.all(
-                          width: 2, color: Color.fromARGB(255, 240, 237, 235)),
+                          width: 2,
+                          color: const Color.fromARGB(255, 240, 237, 235)),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
@@ -38,10 +40,10 @@ class _SettingProfileWidgetState extends State<SettingProfileWidget> {
                       ),
                     ),
                   ),
-                  Text("Chính sách")
+                  const Text("Chính sách")
                 ],
               )),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
@@ -49,11 +51,12 @@ class _SettingProfileWidgetState extends State<SettingProfileWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 15, bottom: 5),
-                    padding: EdgeInsets.all(18),
+                    margin: const EdgeInsets.only(top: 15, bottom: 5),
+                    padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
                       border: Border.all(
-                          width: 2, color: Color.fromARGB(255, 240, 237, 235)),
+                          width: 2,
+                          color: const Color.fromARGB(255, 240, 237, 235)),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
@@ -63,27 +66,30 @@ class _SettingProfileWidgetState extends State<SettingProfileWidget> {
                       ),
                     ),
                   ),
-                  Text("Chuyển đổi")
+                  const Text("Chuyển đổi")
                 ],
               )),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
                   child: GestureDetector(
-                onTap: () {
+                onTap: () async {
+                  final SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.clear();
                   Get.toNamed('/login');
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 15, bottom: 5),
-                      padding: EdgeInsets.all(18),
+                      margin: const EdgeInsets.only(top: 15, bottom: 5),
+                      padding: const EdgeInsets.all(18),
                       decoration: BoxDecoration(
                         border: Border.all(
                             width: 2,
-                            color: Color.fromARGB(255, 240, 237, 235)),
+                            color: const Color.fromARGB(255, 240, 237, 235)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -93,11 +99,11 @@ class _SettingProfileWidgetState extends State<SettingProfileWidget> {
                         ),
                       ),
                     ),
-                    Text("Đăng xuất")
+                    const Text("Đăng xuất")
                   ],
                 ),
               )),
-              Expanded(child: SizedBox())
+              const Expanded(child: SizedBox())
             ],
           )
         ],

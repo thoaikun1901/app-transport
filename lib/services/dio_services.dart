@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:app_transport/app/app_globals.dart';
+import 'package:app_transport/shared/helper/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,7 +12,7 @@ class DioServices {
       InterceptorsWrapper(
         onRequest: (options, handler) async {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
-          var token = prefs.getString('accessToken') ?? '';
+          var token = prefs.getString('token') ?? '';
           String tokenDevice = prefs.getString('tokenDevice') ?? "";
           // Add the access token to the request header
           options.headers['Authorization'] = 'Bearer $token';
@@ -82,13 +83,20 @@ class DioServices {
   BaseOptions get dioBaseOptions => BaseOptions(
       baseUrl: baseUrl,
       headers: headers,
-      connectTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60));
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30));
 
   Future<Response> get(
       {required String endPoint, dynamic data, dynamic params}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token') ?? '';
+    final options = Options(
+      headers: {
+        "Authorization": "Bearer $token",
+      },
+    );
     var response = await dio.get('$baseUrl/$endPoint',
-        data: data, queryParameters: params);
+        data: data, queryParameters: params, options: options);
     return response;
   }
 
@@ -97,8 +105,15 @@ class DioServices {
       dynamic data,
       dynamic params,
       dynamic option}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token') ?? '';
+    final options = Options(
+      headers: {
+        "Authorization": "Bearer $token",
+      },
+    );
     var response = await dio.post('$baseUrl/$endPoint',
-        data: data, queryParameters: params, options: option);
+        data: data, queryParameters: params, options: options);
     return response;
   }
 
